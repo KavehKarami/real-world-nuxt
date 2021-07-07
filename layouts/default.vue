@@ -5,6 +5,23 @@
   </div>
 </template>
 
+<script>
+export default {
+  head() {
+    return {
+      titleTemplate: '%s - Real World Nuxt',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'this is a real world nuxt project',
+        },
+      ],
+    }
+  },
+}
+</script>
+
 <style>
 html {
   -webkit-text-size-adjust: 100%;
