@@ -258,4 +258,8 @@ select::ms-expand {
 .errorMessage {
   color: red;
 }
+
+.nuxt-progress {
+  background-image: linear-gradient(90deg, #39b9b9, #39b982);
+}
 </style>
