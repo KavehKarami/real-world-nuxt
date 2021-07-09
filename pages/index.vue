@@ -12,20 +12,19 @@
 
 <script>
 export default {
-  asyncData({ $api, error }) {
-    return $api
-      .get(`/events`)
-      .then((response) => {
-        return {
-          events: response.data,
-        }
+  async asyncData({ $api, error }) {
+    try {
+      const { data: events } = await $api.get(`/events`)
+
+      return {
+        events,
+      }
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch events at this time, please try again',
       })
-      .catch(() =>
-        error({
-          statusCode: 503,
-          message: 'Unable to fetch events at this time, please try again',
-        })
-      )
+    }
   },
   head: () => ({
     title: 'Event Listing',
