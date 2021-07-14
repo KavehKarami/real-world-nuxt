@@ -11,10 +11,12 @@
 </template>
 
 <script>
+import EventService from '@/services/EventService.js'
+
 export default {
-  async asyncData({ $api, error }) {
+  async asyncData({ error }) {
     try {
-      const { data: events } = await $api.get(`/events`)
+      const { data: events } = await EventService.getEvents()
 
       return {
         events,
