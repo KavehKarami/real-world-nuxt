@@ -11,16 +11,12 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService.js'
+import { mapState } from 'vuex'
 
 export default {
-  async asyncData({ error }) {
+  async fetch({ store, error }) {
     try {
-      const { data: events } = await EventService.getEvents()
-
-      return {
-        events,
-      }
+      await store.dispatch('events/fetchEvents')
     } catch (e) {
       error({
         statusCode: 503,
@@ -31,5 +27,11 @@ export default {
   head: () => ({
     title: 'Event Listing',
   }),
+
+  computed: {
+    ...mapState({
+      events: (state) => state.events.events,
+    }),
+  },
 }
 </script>
